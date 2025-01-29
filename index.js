@@ -2,12 +2,14 @@ import express from "express";
 import db from "./src/db/db.js";
 import dotenv from "dotenv";
 import userRouter from "./src/routes/userRoutes.js";
+import categoryRouter from "./routers/categoryRouter.js";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT;
 app.use(express.json());
+app.use("/categories", categoryRouter);
 
 // Base route
 app.get("/", (req, res) => {

@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
+import defineUserModel from "../models/userModel.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ const sequelize = new Sequelize(NEON, {
 const db = {
   sequelize,
   Sequelize,
+  User: defineUserModel(sequelize),
 };
 
 export default db;

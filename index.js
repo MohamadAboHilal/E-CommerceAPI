@@ -1,6 +1,7 @@
 import express from "express";
 import db from "./src/db/db.js";
 import dotenv from "dotenv";
+import userRouter from "./src/routes/userRoutes.js";
 
 dotenv.config();
 
@@ -12,7 +13,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the running api6" });
 });
-// test the database connection
+
+// Other Routes
+app.use("/api/v1/users", userRouter);
 
 db.sequelize
   .sync()

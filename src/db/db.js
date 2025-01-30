@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 import defineUserModel from "../models/userModel.js";
+import defineCategoryModel from "../models/categoryModel.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ const db = {
   sequelize,
   Sequelize,
   User: defineUserModel(sequelize),
+  Categories: defineCategoryModel(sequelize),
 };
 
 export default db;

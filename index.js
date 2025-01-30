@@ -3,6 +3,7 @@ import db from "./src/db/db.js";
 import dotenv from "dotenv";
 import userRouter from "./src/routes/userRoutes.js";
 import categoryRouter from "./src/routes/categoryRoutes.js";
+import productRoutes from "./src/routes/productRoutes.js";
 
 dotenv.config();
 

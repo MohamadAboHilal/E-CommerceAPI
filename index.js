@@ -3,7 +3,7 @@ import db from "./src/db/db.js";
 import dotenv from "dotenv";
 import userRouter from "./src/routes/userRoutes.js";
 import categoryRouter from "./src/routes/categoryRoutes.js";
-
+import productRoutes from "./src/routes/productRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -18,6 +18,8 @@ app.get("/", (req, res) => {
 // Other Routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/categories", categoryRouter);
+// Product routes
+app.use("/api/v1/products", productRoutes);
 
 db.sequelize
   .sync()

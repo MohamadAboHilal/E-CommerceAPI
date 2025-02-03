@@ -2,6 +2,8 @@ import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 import defineUserModel from "../models/userModel.js";
 import defineCategoryModel from "../models/categoryModel.js";
+import defineProductModel from "../models/productModel.js";
+import defineOrderModel from "../models/orderModel.js";
 
 dotenv.config();
 
@@ -23,8 +25,21 @@ const sequelize = new Sequelize(NEON, {
 const db = {
   sequelize,
   Sequelize,
-  User: defineUserModel(sequelize),
-  Categories: defineCategoryModel(sequelize),
 };
+
+db.User = defineUserModel(sequelize);
+db.Categories = defineCategoryModel(sequelize);
+db.Product = defineProductModel(sequelize);
+const { Order, OrderProduct } = defineOrderModel(sequelize);
+db.Order = Order;
+db.OrderProduct = OrderProduct;
+
+// Define associations
+db.Product.belongsTo(db.Categories, { foreignKey: "category_id" });
+db.Categories.hasMany(db.Product, { foreignKey: "category_id" });
+
+const Product = db.Product;
+
+export { db, Order, OrderProduct, Product };
 
 export default db;

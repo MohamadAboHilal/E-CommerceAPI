@@ -12,6 +12,10 @@ const productSchema = Joi.object({
       return value;
     }),
   category_id: Joi.number().optional(),
+<<<<<<< HEAD
+=======
+  category_name: Joi.string().optional(),
+>>>>>>> 6e143e707dd8ca23a871385e116a47534be77a0e
   description: Joi.string().optional().allow(null, ""),
   image_url: Joi.string().uri().optional(),
   stock: Joi.number().integer().min(0).optional(),

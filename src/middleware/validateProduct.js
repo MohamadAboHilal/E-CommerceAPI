@@ -1,10 +1,17 @@
 import productSchema from "../schemas/productSchema.js";
 
 const validateProduct = (req, res, next) => {
-  const { error } = productSchema.validate(req.body);
+  const { error, value } = productSchema.validate(req.body, {
+    abortEarly: false,
+  });
+
   if (error) {
-    return res.status(400).json({ error: error.details[0].message });
+    return res.status(400).json({
+      error: error.details.map((err) => err.message),
+    });
   }
+
+  req.body = value;
   next();
 };
 

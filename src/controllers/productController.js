@@ -1,6 +1,8 @@
-import Product from "../models/productModel.js";
 import db from "../db/db.js";
 
+const { Product } = db;
+
+// Get all products
 export const getAllProducts = async (req, res) => {
   try {
     const products = await Product.findAll();
